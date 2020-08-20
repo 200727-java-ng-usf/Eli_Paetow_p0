@@ -46,7 +46,7 @@ public class QuestionTwelve {
         int[] numOfEvens = new int[count];
 
         /**
-         *
+         *return new num of even arrays
          * */
         for (int i = 0; i < count; i++) {
             numOfEvens[i] = holdNumsArray.get(i);
