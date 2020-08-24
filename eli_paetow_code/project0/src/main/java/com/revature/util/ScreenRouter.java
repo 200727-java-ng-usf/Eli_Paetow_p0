@@ -18,8 +18,15 @@ public class ScreenRouter {
         return this;
     }
 
-//    public void navigate(String route){
-//        screens.stream()
-//                .filter(screen ->)
-//    }
+
+    public void navigate(String route) {
+
+
+
+        screens.stream()
+                .filter(screen -> screen.getRoute().equals(route))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No screen found with that route."))
+                .render();
+    }
 }
