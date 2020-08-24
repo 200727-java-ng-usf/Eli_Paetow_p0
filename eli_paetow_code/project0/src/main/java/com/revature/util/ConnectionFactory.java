@@ -20,7 +20,7 @@ public class ConnectionFactory {
 
     private ConnectionFactory() {
         try {
-            props.load(new FileReader("./src/main/resources/application.properties"));
+            props.load(new FileReader("C:\\Users\\ep\\Desktop\\revature_git\\assignments\\eli_paetow_code\\project0\\src\\main\\resources\\application.properties"));
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -32,6 +32,7 @@ public class ConnectionFactory {
      * */
 
     public static ConnectionFactory getInstance(){
+
         return connFactory;
     }
 
@@ -42,7 +43,6 @@ public class ConnectionFactory {
         try {
             Class.forName("org.postgresql.Driver");
 
-            //create a connection here to dbeaver postgres
             conn = DriverManager.getConnection(
                     props.getProperty("url") ,
                     props.getProperty("username") ,

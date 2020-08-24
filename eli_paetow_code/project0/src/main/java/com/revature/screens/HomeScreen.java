@@ -3,12 +3,15 @@ package com.revature.screens;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class HomeScreen extends Screen{
+import static com.revature.AppDriver.app;
 
-    public HomeScreen(){
-        super("HomeScreen" , "/home");
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+public class HomeScreen extends Screen {
+
+    public HomeScreen() {
+        super("HomeScreen", "/home");
+        System.out.println("[LOG] - Instantiating " + super.getName());
     }
+
     @Override
     public void render() {
 
@@ -28,12 +31,20 @@ public class HomeScreen extends Screen{
 
             switch (userSelection) {
                 case "1":
-                    //login
+                    app.getRouter().navigate("/login");
+
+                    break;
+
+                case "2":
+                    app.getRouter().navigate("/register");
+                    break;
+                case "3":
+                    app.setAppRunning(false);
                     break;
                 default:
                     System.out.println("invalid selcection");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

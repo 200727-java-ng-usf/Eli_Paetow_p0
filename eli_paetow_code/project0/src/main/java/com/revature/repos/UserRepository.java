@@ -33,11 +33,13 @@ public class UserRepository {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sql = "SELECT * FROM project0.app_users au " +
-                                "JOIN project0.user_roles ur " +
-                                "ON au.role_id = ur.id ";
+                    "JOIN project0.user_roles ur " +
+                    "ON au.role_id = ur.id " +
+                    "WHERE username = ? AND password = ?";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
+            pstmt.setString(2, password);
 
             ResultSet rs = pstmt.executeQuery();
             _user = mapResultSet(rs).stream().findFirst();
