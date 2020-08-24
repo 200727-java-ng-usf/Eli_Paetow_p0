@@ -43,8 +43,8 @@ public class ConnectionFactory {
         try {
             Class.forName("org.postgresql.Driver");
 
-            conn = DriverManager.getConnection(
-                    props.getProperty("url") ,
+
+            conn = DriverManager.getConnection(props.getProperty("url") ,
                     props.getProperty("username") ,
                     props.getProperty("password"));
 
