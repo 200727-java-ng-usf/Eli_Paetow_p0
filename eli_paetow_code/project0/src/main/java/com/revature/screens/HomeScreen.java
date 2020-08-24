@@ -1,5 +1,8 @@
 package com.revature.screens;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class HomeScreen extends Screen{
 
     public HomeScreen(){
@@ -8,12 +11,16 @@ public class HomeScreen extends Screen{
     }
     @Override
     public void render() {
+
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+
+
         System.out.println("Welcome to Eli's Bank");
         System.out.println("1) Login");
         System.out.println("2) Register");
 
         System.out.println("3) Exit Application");
-        console.read
+
 
         try {
             System.out.println("> ");

@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class UserRepository {
 
@@ -45,4 +47,35 @@ public class UserRepository {
         }
         return _user;
     }
+
+
+    /*
+    * map results set
+    *
+    * */
+
+    private Set<AppUser> mapResultSet(ResultSet rs) throws SQLException{
+        Set<AppUser> users = new HashSet<>();
+
+        /*
+        * use the while loop to goo through and extract the results
+        * */
+
+        while (rs.next()){
+            AppUser temp = new AppUser();
+            temp.setId(rs.getInt("id"));
+            temp.setFirstName(rs.getString("first_name"));
+            temp.setLastName(rs.getString("last_name"));
+            temp.setUsername(rs.getString("username"));
+            temp.setPassword(rs.getString("password"));
+            System.out.println(temp);
+            users.add(temp);
+        }
+        return  users;
+    }
+
+
 }
+
+
+
