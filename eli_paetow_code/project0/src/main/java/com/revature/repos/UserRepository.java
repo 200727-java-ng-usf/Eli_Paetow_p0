@@ -1,6 +1,7 @@
 package com.revature.repos;
 
 import com.revature.models.AppUser;
+import com.revature.models.Role;
 import com.revature.util.ConnectionFactory;
 
 import java.sql.Connection;
@@ -70,14 +71,69 @@ public class UserRepository {
             temp.setLastName(rs.getString("last_name"));
             temp.setUsername(rs.getString("username"));
             temp.setPassword(rs.getString("password"));
+            temp.setEmail(rs.getString("email"));
+            temp.setRole(Role.getByName(rs.getString("name")));
             System.out.println(temp);
             users.add(temp);
         }
         return  users;
     }
 
+    public Optional<AppUser> findUserByUsername(String username) {
 
-}
+        Optional<AppUser> _user = Optional.empty();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = "SELECT * FROM project0.app_users WHERE username = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+
+            ResultSet rs = pstmt.executeQuery();
+            _user = mapResultSet(rs).stream().findFirst();
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+        return _user;
+
+    }
+    public void save(AppUser newUser) {
+
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = "INSERT INTO project0.app_users (username, password, first_name, last_name, email, role_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+
+            // second parameter here is used to indicate column names that will have generated values
+            PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
+            pstmt.setString(1, newUser.getUsername());
+            pstmt.setString(2, newUser.getPassword());
+            pstmt.setString(3, newUser.getFirstName());
+            pstmt.setString(4, newUser.getLastName());
+            pstmt.setString(5, newUser.getEmail());
+            pstmt.setInt(6, newUser.getRole().ordinal() + 1);
+
+
+
+            int rowsInserted = pstmt.executeUpdate();
+
+            if (rowsInserted != 0) {
+
+                ResultSet rs = pstmt.getGeneratedKeys();
+
+                rs.next();
+                newUser.setId(rs.getInt(1));
+
+            }
+
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+
+
+}}
 
 
 

@@ -2,6 +2,7 @@ package com.revature.util;
 
 import com.revature.models.AppUser;
 import com.revature.repos.UserRepository;
+import com.revature.screens.DashboardScreen;
 import com.revature.screens.HomeScreen;
 import com.revature.screens.LoginScreen;
 import com.revature.screens.RegisterScreen;
@@ -27,10 +28,10 @@ public class AppState {
         final UserService userService = new UserService(userRepo);
 
         router = new ScreenRouter();
-                router.addScreen(new LoginScreen(userService))
-                        .addScreen(new RegisterScreen(userService))
-                .addScreen(new HomeScreen());
-
+        router.addScreen(new LoginScreen(userService))
+                .addScreen(new RegisterScreen(userService))
+                .addScreen(new HomeScreen())
+                .addScreen(new DashboardScreen());
 
 
         System.out.println("[LOG] - Application initialization complete.");

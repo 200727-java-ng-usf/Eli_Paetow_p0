@@ -36,7 +36,7 @@ public class LoginScreen extends Screen {
             userService.authenticate(username, password);
 
             if (app.isSessionValid()) {
-                app.getRouter().navigate("/home");
+                app.getRouter().navigate("/dashboard");
             }
 
 

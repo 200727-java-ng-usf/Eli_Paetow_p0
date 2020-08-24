@@ -4,6 +4,13 @@ import com.revature.exceptions.AuthenticationException;
 import com.revature.exceptions.InvalidRequestException;
 import com.revature.models.AppUser;
 import com.revature.repos.UserRepository;
+import com.revature.util.ConnectionFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
 
 import static com.revature.AppDriver.app;
 
@@ -31,4 +38,34 @@ public class UserService {
 
     }
 
-}
+    public boolean isUserValid(AppUser user) {
+        if (user == null) return false;
+        if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
+        if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
+        if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
+        if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
+        return true;
+    }
+    public void register(AppUser newUser) {
+
+        if (!isUserValid(newUser)) {
+            throw new InvalidRequestException("Invalid user field values provided during registration!");
+        }
+
+        Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
+        if (existingUser.isPresent()) {
+            // TODO implement a custom ResourcePersistenceException
+            throw new RuntimeException("Provided username is already in use!");
+        }
+
+        userRepo.save(newUser);
+
+        app.setCurrentUser(newUser);
+
+    }
+
+
+
+    }
+
+

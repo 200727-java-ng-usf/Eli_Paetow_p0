@@ -21,12 +21,11 @@ public class HomeScreen extends Screen {
         System.out.println("Welcome to Eli's Bank");
         System.out.println("1) Login");
         System.out.println("2) Register");
-
         System.out.println("3) Exit Application");
 
 
         try {
-            System.out.println("> ");
+            System.out.print("> ");
             String userSelection = console.readLine();
 
             switch (userSelection) {

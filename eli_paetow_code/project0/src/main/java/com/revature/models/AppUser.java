@@ -4,53 +4,78 @@ import java.util.Objects;
 
 public class AppUser {
 
+    // fields/attributes
+    private Integer id;
     private String firstName;
     private String lastName;
     private String username;
     private String password;
-    private Integer id;
+    private String email;
+    private Role role;
 
 
     /*
      * constructor
      * */
-    public AppUser(){
+    public AppUser() {
         super();
     }
 
     /*
-    * constructor with everything
-    * */
-    public AppUser(String firstName, String lastName, String username, String password, Integer id) {
+     * constructor with everything
+     * */
+    public AppUser(String firstName, String lastName, String username, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-        this.id = id;
+        this.email = email;
+        this.role = Role.LOCKED;
     }
+
     /*
      * constructor for new user
      * */
-    public AppUser(String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
+    public AppUser(String firstName, String lastName, String username, String password, String email, Role role) {
+        this(firstName, lastName, username, password, email);
+        this.role = role;
+    }
 
+    public AppUser(Integer id, String firstName, String lastName, String username, String password, String email, Role role) {
+        this(firstName, lastName, username, password, email, role);
+        this.id = id;
     }
 
     /*
-    * copy constructor
-    * */
+     * copy constructor
+     * */
     // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
-    public AppUser(AppUser copy) {
-        this(copy.firstName, copy.lastName, copy.username, copy.password, copy.id);
-    }
+//    public AppUser(AppUser copy) {
+//
+//        this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password);
+//    }
 
 
     /*
      * getters and setters
      * */
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -84,12 +109,12 @@ public class AppUser {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
+    public Role getRole() {
+        return role;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     /*
