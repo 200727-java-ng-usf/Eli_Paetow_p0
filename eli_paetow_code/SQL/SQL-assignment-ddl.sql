@@ -117,6 +117,8 @@ WHERE "HireDate" BETWEEN '01-JUN-2003' AND '01-MAR-2004';
 2.7 DELETE
 Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
 */
+ALTER TABLE "Invoice" 
+DROP CONSTRAINT "FK_InvoiceCustomerId"
 DELETE 
 FROM "Customer" 
 WHERE "FirstName" = 'Robert' AND "LastName" = 'Walter';
@@ -132,6 +134,7 @@ In this section you will be using the PostGreSQL system functions, as well as yo
 
 Task – Create a function that returns the current time.
 */
+
 select current_timestamp;
 
 
