@@ -6,6 +6,8 @@ import com.revature.models.AppUser;
 import com.revature.models.UserAccount;
 import com.revature.repos.AccountRepository;
 
+import java.io.IOException;
+
 import static com.revature.AppDriver.app;
 
 public class AccountService {
@@ -55,6 +57,19 @@ public class AccountService {
         account.setBalance(account.getBalance() + deposit);
         System.out.println("Deposit complete!");
         accountRepository.updateBalance(account.getBalance(), account.getId());
+    }
+
+    public void withdrawMethod(UserAccount account, Double amount) throws IOException{
+        if (amount > account.getBalance()){
+            System.out.println("The amount is greater than your balance");
+        }else if (amount < 0){
+            System.out.println("You can't withdraw a negative amount");
+
+        }else {
+            account.setBalance(account.getBalance() - amount);
+            accountRepository.updateBalance(account.getBalance() ,account.getId());
+            System.out.println("Withdraw complete");
+        }
     }
 
 
