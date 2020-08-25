@@ -16,9 +16,12 @@ public class AccountService {
 
     public AccountService(AccountRepository accountRepo){
 
-        System.out.println("Account service is running");
         accountRepository = accountRepo;
     }
+
+    /*
+     *authenticate users id before doin operations
+     * */
     public void authenticate(Integer id) {
 
         // validate that the account is correct
@@ -33,6 +36,10 @@ public class AccountService {
 
     }
 
+    /*
+     *if user is new and wants to crete a new account after registering
+     * */
+
     public void createNewAccount(UserAccount newAccount){
         if(!isAccountValid(newAccount)){
             throw new InvalidRequestException("Invalid account");
@@ -44,6 +51,9 @@ public class AccountService {
     }
 
 
+    /*
+     *check to make sure the account has no null fields
+     * */
     public boolean isAccountValid(UserAccount account){
         if (account == null) return false;
         if (account.getBalance() ==null) return false;
@@ -52,6 +62,10 @@ public class AccountService {
         return true;
     }
 
+    /*
+     *if user wants to deposit. take balance and add the amout of deposit
+     * update afterwards.
+     * */
     public void depositAmount(UserAccount account, double deposit){
 
         account.setBalance(account.getBalance() + deposit);
@@ -59,6 +73,12 @@ public class AccountService {
         accountRepository.updateBalance(account.getBalance(), account.getId());
     }
 
+    /*
+     *if user wants to withdraw. check if amount is greater than balance
+     * also check if it is a negative amount
+     * if not simply take the balance and subtract the amount
+     * then update afterwards.
+     * */
     public void withdrawMethod(UserAccount account, Double amount) throws IOException{
         if (amount > account.getBalance()){
             System.out.println("The amount is greater than your balance");

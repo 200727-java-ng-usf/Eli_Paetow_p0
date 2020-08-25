@@ -14,12 +14,14 @@ public class ScreenRouter {
     }
 
     public ScreenRouter addScreen(Screen screen) {
-        System.out.println("[LOG] - Loading " + screen.getName() + " into the router");
         screens.add(screen);
         return this;
     }
 
 
+    /*
+     *navigate method to go from screen to screen by checking the route
+     * */
     public void navigate(String route) {
 
 

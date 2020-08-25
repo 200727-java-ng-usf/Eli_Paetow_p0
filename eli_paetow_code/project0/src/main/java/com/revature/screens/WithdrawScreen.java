@@ -9,9 +9,12 @@ public class WithdrawScreen extends Screen {
 
     private AccountService accountService;
 
+
+    /*
+     *set up name and route to be used
+     * */
     public WithdrawScreen(AccountService accountService) {
         super("WithdrawScreen", "/withdraw");
-        System.out.println("instantiating" + super.getName());
 
         this.accountService = accountService;
     }
@@ -19,12 +22,24 @@ public class WithdrawScreen extends Screen {
     @Override
     public void render() {
         System.out.println("Welcome to the Withdraw Screen");
+
+        /*
+         *enter in the id they want to withdraw from
+         * */
         System.out.println("Enter your account id to withdraw from: ");
         try {
             Integer userInput = 0;
             Double withdrawAmount = 0.0d;
             userInput = Integer.parseInt(app.getConsole().readLine());
+
+            /*
+             *check if id is valid
+             * */
             accountService.authenticate(userInput);
+
+            /*
+             *amount they want to witdraw
+             * */
 
             System.out.println("Enter the amount you'd like to withdraw: ");
 
@@ -34,8 +49,16 @@ public class WithdrawScreen extends Screen {
             } catch (Exception e) {
                 System.out.println("invalid input");
             }
+
+            /*
+             *if input is valid then use teh withdraw method
+             * */
             accountService.withdrawMethod(app.getCurrentAccount(), withdrawAmount);
 
+
+            /*
+             *return to dashboard
+             * */
             if (app.isSessionValid()) {
                 app.getRouter().navigate("/dashboard");
             }

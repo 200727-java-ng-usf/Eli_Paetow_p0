@@ -1,15 +1,22 @@
 package com.revature.screens;
 
 import java.io.IOException;
+
 import static com.revature.AppDriver.app;
 
 public class DashboardScreen extends Screen {
 
+
+    /*
+     *set up name and route to be used
+     * */
     public DashboardScreen() {
         super("DashboardScreen", "/dashboard");
-        System.out.println("instantiating" + super.getName());
     }
 
+    /*
+     *offer the user options to use their account
+     * */
     @Override
     public void render() {
         System.out.println("Welcome to your Dashboard!\n");
@@ -22,6 +29,9 @@ public class DashboardScreen extends Screen {
             System.out.print("> ");
             String userSelection = app.getConsole().readLine().trim();
 
+            /*
+             *routes the user based off their selection
+             * */
             switch (userSelection) {
                 case "1":
                     System.out.println("deposit");

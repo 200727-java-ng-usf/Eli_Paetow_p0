@@ -49,11 +49,10 @@ public class AppUser {
     /*
      * copy constructor
      * */
-    // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
-//    public AppUser(AppUser copy) {
-//
-//        this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password);
-//    }
+//     copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
+    public AppUser(AppUser copy){
+        this(copy.id , copy.firstName, copy.lastName, copy.username, copy.password, copy.email, copy.role);
+    }
 
 
     /*

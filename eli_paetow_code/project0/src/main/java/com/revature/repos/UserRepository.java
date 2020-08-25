@@ -16,10 +16,10 @@ public class UserRepository {
 
 
     /*
-     * show console that this class is running
-     * */
+    * empty constructor
+     */
     public UserRepository() {
-        System.out.println("Running: " + this.getClass().getName());
+
     }
 
     /*

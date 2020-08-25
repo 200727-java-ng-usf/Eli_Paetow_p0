@@ -7,17 +7,27 @@ import static com.revature.AppDriver.app;
 
 public class HomeScreen extends Screen {
 
+    /*
+     *set up name and route to be used
+     * */
+
     public HomeScreen() {
         super("HomeScreen", "/home");
-        System.out.println("[LOG] - Instantiating " + super.getName());
     }
 
     @Override
     public void render() {
 
+        /*
+         *remove this later
+         * */
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
 
+        /*
+         *welcome to the homescreen
+         * options to login or register
+         * */
         System.out.println("Welcome to Eli's Bank");
         System.out.println("1) Login");
         System.out.println("2) Register");
@@ -28,6 +38,9 @@ public class HomeScreen extends Screen {
             System.out.print("> ");
             String userSelection = console.readLine();
 
+            /*
+             *route user based off selection
+             * */
             switch (userSelection) {
                 case "1":
                     app.getRouter().navigate("/login");
@@ -41,7 +54,7 @@ public class HomeScreen extends Screen {
                     app.setAppRunning(false);
                     break;
                 default:
-                    System.out.println("invalid selcection");
+                    System.out.println("invalid selection");
             }
         } catch (Exception e) {
             e.printStackTrace();

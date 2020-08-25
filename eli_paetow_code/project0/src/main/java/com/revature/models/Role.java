@@ -2,7 +2,7 @@ package com.revature.models;
 
 public enum Role {
 
-    // values declared within enums are constants and are comma separated
+
     ADMIN("Admin"),
     MANAGER("Manager"),
     PREMIUM_MEMBER("Premium Member"),
@@ -11,7 +11,7 @@ public enum Role {
 
     private String roleName;
 
-    // enum constructors are implicitly private
+
     Role(String name) {
         this.roleName = name;
     }

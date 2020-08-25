@@ -18,6 +18,10 @@ public class ConnectionFactory {
 
     private Properties props = new Properties();
 
+    /*
+     *set up the route for the application properties
+     * this will help keep unwanted details off github
+     * */
     private ConnectionFactory() {
         try {
             props.load(new FileReader("C:\\Users\\ep\\Desktop\\revature_git\\assignments\\eli_paetow_code\\project0\\src\\main\\resources\\application.properties"));
@@ -36,13 +40,22 @@ public class ConnectionFactory {
         return connFactory;
     }
 
+
+
+
     public Connection getConnection(){
 
         Connection conn = null;
+        /*
+         *set up the connection to my dbeaver db
+         * */
 
         try {
             Class.forName("org.postgresql.Driver");
 
+            /*
+             *properties from the properties file
+             * */
 
             conn = DriverManager.getConnection(props.getProperty("url") ,
                     props.getProperty("username") ,
@@ -58,6 +71,10 @@ public class ConnectionFactory {
         return conn;
 
     }
+
+    /*
+     *overrides
+     * */
     @Override
     protected Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();

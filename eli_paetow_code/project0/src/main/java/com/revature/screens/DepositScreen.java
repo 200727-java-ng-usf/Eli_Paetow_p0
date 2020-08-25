@@ -11,14 +11,19 @@ public class DepositScreen extends Screen {
 
     private AccountService accountService;
 
+    /*
+     * set up name and route to be used
+     * */
     public DepositScreen(AccountService accountService) {
         super("DepositScreen", "/deposit");
-        System.out.println("instantiating" + super.getName());
 
         this.accountService = accountService;
     }
 
 
+    /*
+     *take in the users account and the amount they want to deposit
+     * */
     @Override
     public void render() {
 
@@ -30,6 +35,10 @@ public class DepositScreen extends Screen {
 
         try{
             userInput = Integer.parseInt(app.getConsole().readLine());
+
+            /*
+             *check if account is valid
+             * */
             accountService.authenticate(userInput);
 
         }catch(IOException e){
@@ -45,6 +54,10 @@ public class DepositScreen extends Screen {
 
             deposit = Double.parseDouble(app.getConsole().readLine());
 
+
+            /*
+             *check to see if deposit is equal to 0
+             * */
             if (deposit == 0) {
 
                 System.out.println("you cant deposit 0 dollars");
@@ -60,6 +73,9 @@ public class DepositScreen extends Screen {
         } catch (IOException e) {
             System.out.println("You've entered an invalid number.");
         }
+        /*
+         *take back to dashboard once transaction is complete
+         * */
         if (app.isSessionValid()) {
             app.getRouter().navigate("/dashboard");
         }

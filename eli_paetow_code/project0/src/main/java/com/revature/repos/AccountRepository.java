@@ -17,8 +17,11 @@ import static com.revature.AppDriver.app;
 
 public class AccountRepository {
 
+    /*
+     * empty constructor
+     * */
     public AccountRepository() {
-        System.out.println("Account repo is running");
+
 
     }
 
@@ -26,18 +29,32 @@ public class AccountRepository {
 
         Optional<UserAccount> _account = Optional.empty();
 
+        /*
+         * try block to set up connection and find user by id
+         * */
+
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
+            /*
+             * query to be run inside of dbeaver
+             * */
             String sql = "SELECT * FROM project0.app_users au " +
                     "JOIN project0.user_account ua " +
                     "ON au.role_id = ua.id " +
                     "WHERE ua.id = ? " + app.getCurrentUser().getId();
 
+            /*
+             *prepare statemet and execute it
+             * */
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
+            //error
+            pstmt.setInt(1,app.getCurrentUser().getId() );
 
             ResultSet rs = pstmt.executeQuery();
 
+            /*
+             *map the result so ut can be returned
+             * */
             _account = mapResultSet(rs).stream().findFirst();
 
 
@@ -48,8 +65,17 @@ public class AccountRepository {
     }
 
     public Optional<UserAccount> save(UserAccount account) {
+
+        /*
+         *try block to set up connection to save user
+         * */
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            /*
+             *sql query to be run in db
+             * */
+
             String sql = "INSERT INTO project0.user_account (id , balance) VALUES (? , ?)";
+
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 
@@ -58,6 +84,9 @@ public class AccountRepository {
 
             int rowsInserted = pstmt.executeUpdate();
 
+            /*
+             *if statement to catch error if rows inserted is 0
+             * */
             if (rowsInserted != 0) {
 
                 ResultSet rs = pstmt.getGeneratedKeys();
@@ -90,6 +119,9 @@ public class AccountRepository {
         return accounts;
     }
 
+    /*
+     *method to update the balance after user has withdrawn or deposited
+     * */
     public static Optional<UserAccount> updateBalance(Double balance, Integer id) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {

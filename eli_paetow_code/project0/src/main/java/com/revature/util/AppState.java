@@ -12,6 +12,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class AppState {
+    /*
+     *these will help cut down on reduntant code
+     * */
 
     private BufferedReader console;
     private AppUser currentUser;
@@ -20,7 +23,10 @@ public class AppState {
     private UserAccount currentAccount;
 
     public AppState() {
-        System.out.println("[LOG] - Initializing application...");
+
+        /*
+         *set app running
+         * */
 
         appRunning = true;
         console = new BufferedReader(new InputStreamReader(System.in));
@@ -31,6 +37,10 @@ public class AppState {
         final AccountRepository accountRepository = new AccountRepository();
         final AccountService accountService = new AccountService(accountRepository);
 
+        /*
+         *set up the screen router
+         * add all new screens here
+         * */
         router = new ScreenRouter();
         router.addScreen(new LoginScreen(userService))
                 .addScreen(new RegisterScreen(userService))
@@ -41,10 +51,11 @@ public class AppState {
                 .addScreen(new BalanceViewScreen(accountService));
 
 
-        System.out.println("[LOG] - Application initialization complete.");
-
     }
 
+    /*
+     *getters and setters
+     * */
     public BufferedReader getConsole() {
         return console;
     }
@@ -61,17 +72,17 @@ public class AppState {
         return router;
     }
 
-    public UserAccount getCurrentAccount(){
+    public UserAccount getCurrentAccount() {
         return currentAccount;
     }
-    public void setCurrentAccount(UserAccount currentAccount){
+
+    public void setCurrentAccount(UserAccount currentAccount) {
         this.currentAccount = currentAccount;
     }
 
     public boolean isAppRunning() {
         return appRunning;
     }
-
 
 
     public void setAppRunning(boolean appRunning) {

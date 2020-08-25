@@ -19,11 +19,14 @@ public class UserService {
     private UserRepository userRepo;
 
     public UserService(UserRepository repo) {
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
         userRepo = repo;
-//        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
 
+
+    /*
+     *check if username and password are correct
+     * not empty or full of spaces
+     * */
     public void authenticate(String username, String password) {
 
         // validate that the provided username and password are not non-values
@@ -38,6 +41,9 @@ public class UserService {
 
     }
 
+    /*
+     *check to see if all the fields are valid
+     * */
     public boolean isUserValid(AppUser user) {
         if (user == null) return false;
         if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
@@ -46,15 +52,24 @@ public class UserService {
         if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
         return true;
     }
+
+    /*
+     *if new user chooses to register
+     * */
     public void register(AppUser newUser) {
 
+        /*
+         *check input to see if valid
+         * */
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Invalid user field values provided during registration!");
         }
 
+        /*
+         *check if user already exists
+         * */
         Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
         if (existingUser.isPresent()) {
-            // TODO implement a custom ResourcePersistenceException
             throw new RuntimeException("Provided username is already in use!");
         }
 
@@ -65,7 +80,6 @@ public class UserService {
     }
 
 
-
-    }
+}
 
 

@@ -10,9 +10,12 @@ public class RegisterScreen extends Screen {
 
     private UserService userService;
 
+
+    /*
+     *set up name and route to be used
+     * */
     public RegisterScreen(UserService userService) {
         super("RegisterScreen", "/register");
-        System.out.println("Register Screen is running");
 
         this.userService = userService;
 
@@ -22,6 +25,10 @@ public class RegisterScreen extends Screen {
     public void render() {
         String firstName, lastName, username, password, email;
 
+        /*
+         *user decided to register
+         * take in values for all fields
+         * */
         try {
             System.out.println("Sign up for a new account!");
             System.out.print("First name: ");
@@ -36,8 +43,16 @@ public class RegisterScreen extends Screen {
             email = app.getConsole().readLine();
 
 
+            /*
+             *finish creating the user
+             * */
+
             AppUser newUser = new AppUser(firstName, lastName, username, password, email);
             userService.register(newUser);
+
+            /*
+             *return to dashboard iff all values are valid
+             * */
 
             if (app.isSessionValid()) {
                 app.getRouter().navigate("/dashboard");
@@ -46,6 +61,9 @@ public class RegisterScreen extends Screen {
         } catch (InvalidRequestException e) {
             System.err.println("Registration unsuccessful, invalid values provided.");
         } catch (Exception e) {
+            /*
+             *shut down and set app running to false if error occurs
+             * */
             System.err.println("[ERROR] - An unexpected exception occurred: " + e.getMessage());
             System.out.println("[LOG] - Shutting down application");
             app.setAppRunning(false);
