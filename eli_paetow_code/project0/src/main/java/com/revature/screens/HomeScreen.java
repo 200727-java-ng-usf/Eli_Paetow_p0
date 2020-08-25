@@ -28,6 +28,8 @@ public class HomeScreen extends Screen {
          *welcome to the homescreen
          * options to login or register
          * */
+        System.out.println("");
+        System.out.println("------------------------");
         System.out.println("Welcome to Eli's Bank");
         System.out.println("1) Login");
         System.out.println("2) Register");

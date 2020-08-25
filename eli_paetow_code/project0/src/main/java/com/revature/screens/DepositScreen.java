@@ -30,27 +30,28 @@ public class DepositScreen extends Screen {
         int userInput = 0;
         double deposit = 0.0d;
 
+        System.out.println("");
+        System.out.println("------------------------");
         System.out.println("Welcome to the Deposit Screen");
-        System.out.print("Enter your account id to be deposited: ");
-
-        try{
-            userInput = Integer.parseInt(app.getConsole().readLine());
-
-            /*
-             *check if account is valid
-             * */
-            accountService.authenticate(userInput);
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+//        System.out.print("Enter your account id to be deposited: ");
+//
+//        try{
+//            userInput = Integer.parseInt(app.getConsole().readLine());
+//
+//            /*
+//             *check if account is valid
+//             * */
+//            accountService.authenticate(userInput);
+//
+//        }catch(IOException e){
+//            e.printStackTrace();
+//        }
 
 
         try {
 
 
-
-            System.out.print("Enter your account id to be deposited: ");
+            System.out.print("Enter amount you want to deposit: ");
 
             deposit = Double.parseDouble(app.getConsole().readLine());
 
@@ -62,12 +63,11 @@ public class DepositScreen extends Screen {
 
                 System.out.println("you cant deposit 0 dollars");
 
-            } else {
-
-                accountService.depositAmount(app.getCurrentAccount(), deposit);
-
-                System.out.println("thank you for your deposit");
             }
+
+            accountService.depositAmount(app.getCurrentAccount(), deposit);
+
+            System.out.println("thank you for your deposit");
 
 
         } catch (IOException e) {

@@ -34,7 +34,9 @@ public class LoginScreen extends Screen {
          * prompt for username and password
          * */
         try {
-            System.out.println("Welcome back to Eli's Bank! ");
+            System.out.println("");
+            System.out.println("------------------------");
+            System.out.println("Thank you for banking with Eli's Bank! ");
             System.out.println("Please provide your login credentials");
             System.out.print("Username: ");
             username = app.getConsole().readLine();

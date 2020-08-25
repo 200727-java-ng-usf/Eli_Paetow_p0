@@ -19,7 +19,9 @@ public class DashboardScreen extends Screen {
      * */
     @Override
     public void render() {
-        System.out.println("Welcome to your Dashboard!\n");
+        System.out.println("");
+        System.out.println("------------------------");
+        System.out.println("Welcome to your Dashboard!");
         System.out.println("1) Deposit funds into your account");
         System.out.println("2) Withdraw funds from your account");
         System.out.println("3) View the balance of your account");

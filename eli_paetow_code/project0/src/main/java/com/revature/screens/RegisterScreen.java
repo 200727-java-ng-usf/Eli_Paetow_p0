@@ -30,6 +30,8 @@ public class RegisterScreen extends Screen {
          * take in values for all fields
          * */
         try {
+            System.out.println("");
+            System.out.println("------------------------");
             System.out.println("Sign up for a new account!");
             System.out.print("First name: ");
             firstName = app.getConsole().readLine();
