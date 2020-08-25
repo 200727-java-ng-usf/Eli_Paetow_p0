@@ -25,12 +25,15 @@ public class DashboardScreen extends Screen {
             switch (userSelection) {
                 case "1":
                     System.out.println("deposit");
+                    app.getRouter().navigate("/deposit");
                     break;
                 case "2":
                     System.out.println("Withdraw");
+                    app.getRouter().navigate("/withdraw");
                     break;
                 case "3":
                     System.out.println("View the balance");
+                    app.getRouter().navigate("/balanceView");
                     break;
                 case "4":
                     app.getRouter().navigate("/home");

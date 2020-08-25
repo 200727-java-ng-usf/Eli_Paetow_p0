@@ -47,6 +47,23 @@ CREATE TABLE app_users(
 	
 );
 
+CREATE TABLE user_account(
+
+	id serial,
+	balance money DEFAULT 0.00,
+
+	
+	CONSTRAINT user_account_pk
+	PRIMARY KEY (id) ,
+	
+	CONSTRAINT user_account_fk
+	FOREIGN KEY (id) 
+	REFERENCES app_users(id)
+	
+	
+
+);
+
 /* 
  * insrting values 
  * */
@@ -64,10 +81,32 @@ VALUES
 	('greenman', 'password' , 'Charlie' , 'Kelly' , 'kittenMittens@email.com' , 4) ,
 	('trashman', 'password' , 'Frank' , 'Reynolds' , 'WolfCola@email.com' , 5) ; 
 
+INSERT INTO user_account (id, balance)
+VALUES 
+	(1, 100.00);
+
+INSERT INTO user_account (id, balance)
+VALUES 
+	(2, 100.00),
+	(3, 2000.00),
+	(4, 0.01),
+	(5, 256.00);
+	
+
+
 
 SELECT * 
 FROM app_users ;
 	
+select * 
+from app_users au
+join user_roles ur
+on au.role_id = ur.id;
+
+SELECT *
+FROM user_account ua  
+JOIN app_users au
+ON ua.id = au.id ;
 
 
 

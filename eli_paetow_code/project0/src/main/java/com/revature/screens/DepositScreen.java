@@ -22,20 +22,34 @@ public class DepositScreen extends Screen {
     @Override
     public void render() {
 
+        int userInput = 0;
         double deposit = 0.0d;
 
         System.out.println("Welcome to the Deposit Screen");
-        System.out.print("Enter the amount to be deposited: ");
+        System.out.print("Enter your account id to be deposited: ");
+
+        try{
+            userInput = Integer.parseInt(app.getConsole().readLine());
+            accountService.authenticate(userInput);
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
 
         try {
-//            String deposit = app.getConsole().readLine().trim();
+
+
+
+            System.out.print("Enter your account id to be deposited: ");
+
             deposit = Double.parseDouble(app.getConsole().readLine());
 
             if (deposit == 0) {
 
                 System.out.println("you cant deposit 0 dollars");
 
-            }else{
+            } else {
 
                 accountService.depositAmount(app.getCurrentAccount(), deposit);
 
@@ -46,7 +60,7 @@ public class DepositScreen extends Screen {
         } catch (IOException e) {
             System.out.println("You've entered an invalid number.");
         }
-        if (app.isSessionValid()){
+        if (app.isSessionValid()) {
             app.getRouter().navigate("/dashboard");
         }
 

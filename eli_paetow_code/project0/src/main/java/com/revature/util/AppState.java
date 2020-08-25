@@ -36,7 +36,9 @@ public class AppState {
                 .addScreen(new RegisterScreen(userService))
                 .addScreen(new HomeScreen())
                 .addScreen(new DashboardScreen())
-                .addScreen(new DepositScreen(accountService));
+                .addScreen(new DepositScreen(accountService))
+                .addScreen(new WithdrawScreen(accountService))
+                .addScreen(new BalanceViewScreen(accountService));
 
 
         System.out.println("[LOG] - Application initialization complete.");
