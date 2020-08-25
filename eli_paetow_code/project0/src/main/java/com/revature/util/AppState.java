@@ -1,11 +1,11 @@
 package com.revature.util;
 
 import com.revature.models.AppUser;
+import com.revature.models.UserAccount;
+import com.revature.repos.AccountRepository;
 import com.revature.repos.UserRepository;
-import com.revature.screens.DashboardScreen;
-import com.revature.screens.HomeScreen;
-import com.revature.screens.LoginScreen;
-import com.revature.screens.RegisterScreen;
+import com.revature.screens.*;
+import com.revature.services.AccountService;
 import com.revature.services.UserService;
 
 import java.io.BufferedReader;
@@ -17,6 +17,7 @@ public class AppState {
     private AppUser currentUser;
     private ScreenRouter router;
     private boolean appRunning;
+    private UserAccount currentAccount;
 
     public AppState() {
         System.out.println("[LOG] - Initializing application...");
@@ -27,11 +28,15 @@ public class AppState {
         final UserRepository userRepo = new UserRepository();
         final UserService userService = new UserService(userRepo);
 
+        final AccountRepository accountRepository = new AccountRepository();
+        final AccountService accountService = new AccountService(accountRepository);
+
         router = new ScreenRouter();
         router.addScreen(new LoginScreen(userService))
                 .addScreen(new RegisterScreen(userService))
                 .addScreen(new HomeScreen())
-                .addScreen(new DashboardScreen());
+                .addScreen(new DashboardScreen())
+                .addScreen(new DepositScreen(accountService));
 
 
         System.out.println("[LOG] - Application initialization complete.");
@@ -54,9 +59,18 @@ public class AppState {
         return router;
     }
 
+    public UserAccount getCurrentAccount(){
+        return currentAccount;
+    }
+    public void setCurrentAccount(UserAccount currentAccount){
+        this.currentAccount = currentAccount;
+    }
+
     public boolean isAppRunning() {
         return appRunning;
     }
+
+
 
     public void setAppRunning(boolean appRunning) {
         this.appRunning = appRunning;

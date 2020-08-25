@@ -27,6 +27,10 @@ public class UserAccount {
         this(copy.id, copy.balance, copy.user_id);
     }
 
+    public UserAccount() {
+
+    }
+
     /*
      * getters and setters
      * */
