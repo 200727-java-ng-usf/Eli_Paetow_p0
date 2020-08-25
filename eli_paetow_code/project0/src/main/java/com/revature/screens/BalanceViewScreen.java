@@ -1,6 +1,10 @@
 package com.revature.screens;
 
+import com.revature.models.UserAccount;
+import com.revature.repos.AccountRepository;
 import com.revature.services.AccountService;
+
+import javax.jws.soap.SOAPBinding;
 
 import static com.revature.AppDriver.app;
 
@@ -24,13 +28,22 @@ public class BalanceViewScreen extends Screen {
     @Override
     public void render() {
         System.out.println("View your balance below ");
-        System.out.println(app.getCurrentAccount());
+        Integer id =0;
+        try {
+            id = app.getCurrentAccount().getId();
+
+            accountService.viewBalance(id);
+
+        } catch (Exception e){
+            System.out.println("there has been an error viewing balance");
+        }
 
         if (app.isSessionValid()) {
             app.getRouter().navigate("/dashboard");
         }
 
 
-
     }
+
+
 }

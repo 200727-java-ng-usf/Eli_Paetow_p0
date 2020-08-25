@@ -12,7 +12,7 @@ import static com.revature.AppDriver.app;
 
 public class AccountService {
 
-    private static AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     public AccountService(AccountRepository accountRepo){
 
@@ -68,8 +68,14 @@ public class AccountService {
      * */
     public void depositAmount(UserAccount account, double deposit){
 
+
+        //fix to null????
+//        app.setCurrentAccount(account);
+        app.setCurrentAccount(app.getCurrentAccount());
+
         account.setBalance(account.getBalance() + deposit);
         System.out.println("Deposit complete!");
+//        System.out.println(accountRepository);
         accountRepository.updateBalance(account.getBalance(), account.getId());
     }
 
@@ -90,6 +96,17 @@ public class AccountService {
             accountRepository.updateBalance(account.getBalance() ,account.getId());
             System.out.println("Withdraw complete");
         }
+    }
+
+    /*
+     *if user wants to view their balance
+     * view balance
+     * return to dashboard
+     * */
+
+    public void viewBalance(UserAccount account){
+        System.out.println(account.getBalance());
+
     }
 
 

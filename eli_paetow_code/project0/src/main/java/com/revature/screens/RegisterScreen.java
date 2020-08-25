@@ -45,6 +45,7 @@ public class RegisterScreen extends Screen {
             email = app.getConsole().readLine();
 
 
+
             /*
              *finish creating the user
              * */

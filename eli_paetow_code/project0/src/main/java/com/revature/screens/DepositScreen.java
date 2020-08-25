@@ -1,8 +1,10 @@
 package com.revature.screens;
 
+import com.revature.models.UserAccount;
 import com.revature.services.AccountService;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import static com.revature.AppDriver.app;
 
@@ -30,22 +32,24 @@ public class DepositScreen extends Screen {
         int userInput = 0;
         double deposit = 0.0d;
 
+
         System.out.println("");
         System.out.println("------------------------");
         System.out.println("Welcome to the Deposit Screen");
-//        System.out.print("Enter your account id to be deposited: ");
-//
-//        try{
-//            userInput = Integer.parseInt(app.getConsole().readLine());
-//
-//            /*
-//             *check if account is valid
-//             * */
-//            accountService.authenticate(userInput);
-//
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
+        System.out.print("Enter your account id to be deposited: ");
+
+        try{
+            userInput = Integer.parseInt(app.getConsole().readLine());
+
+            /*
+             *check if account is valid
+             * */
+            accountService.authenticate(userInput);
+
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
 
 
         try {
@@ -65,6 +69,12 @@ public class DepositScreen extends Screen {
 
             }
 
+            //delete this
+            //app.get current account is set to null or not being set find that.
+
+
+
+//            System.out.println("is null? :: "  + app.getCurrentAccount());
             accountService.depositAmount(app.getCurrentAccount(), deposit);
 
             System.out.println("thank you for your deposit");

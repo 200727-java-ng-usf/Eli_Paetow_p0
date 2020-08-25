@@ -41,14 +41,15 @@ public class AccountRepository {
             String sql = "SELECT * FROM project0.app_users au " +
                     "JOIN project0.user_account ua " +
                     "ON au.role_id = ua.id " +
-                    "WHERE ua.id = ? " + app.getCurrentUser().getId();
+                    "WHERE ua.id = ? " ;
+//                    + app.getCurrentUser().getId();
 
             /*
              *prepare statemet and execute it
              * */
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            //error
-            pstmt.setInt(1,app.getCurrentUser().getId() );
+
+            pstmt.setInt(1,id );
 
             ResultSet rs = pstmt.executeQuery();
 
@@ -61,6 +62,7 @@ public class AccountRepository {
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
+
         return _account;
     }
 
@@ -122,8 +124,9 @@ public class AccountRepository {
     /*
      *method to update the balance after user has withdrawn or deposited
      * */
-    public static Optional<UserAccount> updateBalance(Double balance, Integer id) {
+    public Optional<UserAccount> updateBalance(Double balance, Integer id) {
 
+//        Optional<UserAccount> _account = Optional.empty();
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "UPDATE project0.user_account SET balance = " + balance +
                     "WHERE id = " + id;
@@ -139,6 +142,8 @@ public class AccountRepository {
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
+
+
         return null;
 
     }
