@@ -2,6 +2,10 @@ package com.revature.models;
 
 public enum Role {
 
+    /*
+    * role enum will help keep user selection for roles
+    * to a predefined range of selections
+    * */
 
     ADMIN("Admin"),
     MANAGER("Manager"),
@@ -11,6 +15,10 @@ public enum Role {
 
     private String roleName;
 
+    /*
+    * constructors for enums are
+    * implicitly private
+    * */
 
     Role(String name) {
         this.roleName = name;

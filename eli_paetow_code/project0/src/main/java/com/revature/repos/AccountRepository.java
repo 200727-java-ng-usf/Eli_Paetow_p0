@@ -25,6 +25,12 @@ public class AccountRepository {
 
     }
 
+    /*
+    * using an optional to allow the class to contain an
+    * object or be empty
+    * helps with functional programming
+    * also provides great methods
+    * */
     public Optional<UserAccount> findById(Integer id) {
 
         Optional<UserAccount> _account = Optional.empty();
@@ -69,6 +75,11 @@ public class AccountRepository {
     /*
      * method for viewing the balance
      * */
+
+    /*
+     * currently not using this. but would like to in future improvements
+     * */
+
     public Optional<UserAccount> findBalance(Integer id) {
 
         Optional<com.revature.models.UserAccount> _account = Optional.empty();
@@ -109,6 +120,11 @@ public class AccountRepository {
         return _account;
     }
 
+
+    /*
+     * method for saving the users balance and id
+     * into the database
+     * */
     public Optional<UserAccount> save(UserAccount account) {
 
         /*
@@ -146,6 +162,11 @@ public class AccountRepository {
         }
         return null;
     }
+
+    /*
+     * method to use after operations
+     * sets results
+     * */
 
     private Set<UserAccount> mapResultSet(ResultSet rs) throws SQLException {
         Set<UserAccount> accounts = new HashSet<>();

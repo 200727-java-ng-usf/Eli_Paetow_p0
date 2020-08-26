@@ -9,6 +9,9 @@ import static com.revature.AppDriver.app;
 
 public class LoginScreen extends Screen {
 
+    /*
+     * use user service as a dependency
+     * */
     private UserService userService;
 
     /*

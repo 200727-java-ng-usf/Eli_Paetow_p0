@@ -15,6 +15,7 @@ public class AccountService {
 
     private AccountRepository accountRepository;
 
+
     public AccountService(AccountRepository accountRepo) {
 
         accountRepository = accountRepo;
@@ -26,9 +27,12 @@ public class AccountService {
     public void authenticate(Integer id) {
 
         // validate that the account is correct
-        if (id == null || id.equals("")) {
+        if (id == null || id.equals("") ) {
             throw new InvalidRequestException("Invalid Id provided!");
         }
+        /*
+         * will use this in future improvement
+         * */
 //        if (accountRepository.findById(id) != accountRepository.findById(id)) {
 //            System.out.println("That is not your id");
 //
@@ -107,6 +111,11 @@ public class AccountService {
      *if user wants to view their balance
      * view balance
      * return to dashboard
+     * */
+
+    /*
+     * number format changes it to
+     * $0.00
      * */
 
     NumberFormat money = NumberFormat.getCurrencyInstance();

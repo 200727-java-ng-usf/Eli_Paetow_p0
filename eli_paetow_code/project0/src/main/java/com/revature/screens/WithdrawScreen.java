@@ -30,20 +30,10 @@ public class WithdrawScreen extends Screen {
         /*
          *enter in the id they want to withdraw from
          * */
-//        System.out.println("Enter your account id to withdraw from: ");
         try {
             Integer userInput = 0;
             Double withdrawAmount = 0.0d;
-//            userInput = Integer.parseInt(app.getConsole().readLine());
-//
-//            /*
-//             *check if id is valid
-//             * */
-//            accountService.authenticate(userInput);
 
-            /*
-             *amount they want to withdraw
-             * */
 
             System.out.print("Enter the amount you'd like to withdraw: ");
 

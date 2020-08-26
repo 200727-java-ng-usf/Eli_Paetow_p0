@@ -50,7 +50,7 @@ CREATE TABLE app_users(
 CREATE TABLE user_account(
 
 	id serial,
-	balance int DEFAULT 0.00,
+	balance decimal DEFAULT 0.00,
 
 	
 	CONSTRAINT user_account_pk
@@ -83,14 +83,14 @@ VALUES
 
 INSERT INTO user_account (id, balance)
 VALUES 
-	(1, 100.00);
+	(1, 100.55);
 
 INSERT INTO user_account (id, balance)
 VALUES 
-	(2, 100.00),
-	(3, 2000.00),
+	(2, 100.09),
+	(3, 2000.33),
 	(4, 0.01),
-	(5, 256.00);
+	(5, 256.99);
 	
 
 
@@ -101,14 +101,20 @@ FROM app_users ;
 select * 
 from app_users au
 join user_roles ur
-on au.role_id = ur.id;
+on au.role_id = ur.id
+ORDER BY au.id ;
 
 SELECT *
 FROM user_account ua  
 JOIN app_users au
-ON ua.id = au.id ;
+ON ua.id = au.id 
+ORDER BY au.id ;
 
---DROP TABLE user_account ;
+DROP TABLE user_account ;
+
+DELETE 
+FROM app_users 
+WHERE id = 17;
 
 
 

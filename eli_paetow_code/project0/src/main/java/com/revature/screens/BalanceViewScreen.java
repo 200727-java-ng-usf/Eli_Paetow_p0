@@ -18,6 +18,7 @@ public class BalanceViewScreen extends Screen {
 
     /*
      *set up name and route to be used
+     * also constructor injecting
      * */
     public BalanceViewScreen(AccountService accountService) {
         super("BalanceViewScreen", "/balanceView");

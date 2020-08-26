@@ -79,6 +79,10 @@ public class UserRepository {
         return  users;
     }
 
+    /*
+     * method for finding the user in the databse
+     * based off the imput they five
+     * */
     public Optional<AppUser> findUserByUsername(String username) {
 
         Optional<AppUser> _user = Optional.empty();
@@ -99,6 +103,11 @@ public class UserRepository {
         return _user;
 
     }
+
+
+    /*
+     * method for saving users into the databse with all their values
+     * */
     public void save(AppUser newUser) {
 
 
