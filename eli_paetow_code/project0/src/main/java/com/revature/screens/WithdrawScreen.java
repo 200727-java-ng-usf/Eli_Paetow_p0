@@ -35,9 +35,10 @@ public class WithdrawScreen extends Screen {
             Double withdrawAmount = 0.0d;
 
 
-            System.out.print("Enter the amount you'd like to withdraw: ");
+            System.out.println("Enter the amount you'd like to withdraw: ");
 
             System.out.println("------------------------");
+            System.out.print("> ");
 
             try {
                 withdrawAmount = Double.parseDouble(app.getConsole().readLine());

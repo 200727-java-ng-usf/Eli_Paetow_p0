@@ -40,7 +40,7 @@ public class BalanceViewScreen extends Screen {
 
         try {
 
-            System.out.println("To validate your account please enter your account id to be deposited:");
+            System.out.println("To validate your account please enter your account id :");
 
             System.out.print("> ");
 

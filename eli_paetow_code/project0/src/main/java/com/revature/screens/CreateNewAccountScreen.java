@@ -30,7 +30,7 @@ public class CreateNewAccountScreen extends Screen {
 
         try {
 
-            UserAccount newAccount = new UserAccount(18 , 0.0d, 4);
+            UserAccount newAccount = new UserAccount(21 , 0.0d, 4);
 
 
             accountService.createNewAccount(newAccount);
