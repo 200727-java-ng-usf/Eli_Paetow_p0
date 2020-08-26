@@ -33,6 +33,7 @@ public class RegisterScreen extends Screen {
             System.out.println("");
             System.out.println("------------------------");
             System.out.println("Sign up for a new account!");
+            System.out.println("------------------------");
             System.out.print("First name: ");
             firstName = app.getConsole().readLine();
             System.out.print("Last name: ");

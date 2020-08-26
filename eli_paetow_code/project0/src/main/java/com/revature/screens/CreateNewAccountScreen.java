@@ -25,6 +25,8 @@ public class CreateNewAccountScreen extends Screen {
         System.out.println("");
         System.out.println("------------------------");
         System.out.println("Create a new account");
+        System.out.println("------------------------");
+
 
         try {
 
@@ -36,6 +38,8 @@ public class CreateNewAccountScreen extends Screen {
             System.out.println("Thank you for creating a new account");
             System.out.println("------------------------");
             System.out.println("you have a balance of $0.00");
+            System.out.println("------------------------");
+
 
             /*
              *return to dashboard iff all values are valid

@@ -23,11 +23,14 @@ public class DashboardScreen extends Screen {
         System.out.println("");
         System.out.println("------------------------");
         System.out.println("Welcome to your Dashboard!");
+        System.out.println("------------------------");
         System.out.println("1) Deposit funds into your account");
         System.out.println("2) Withdraw funds from your account");
         System.out.println("3) View the balance of your account");
         System.out.println("4) Create a new account");
         System.out.println("5) Logout");
+        System.out.println("------------------------");
+
 
         try {
             System.out.print("> ");
@@ -46,7 +49,7 @@ public class DashboardScreen extends Screen {
                     app.getRouter().navigate("/withdraw");
                     break;
                 case "3":
-                    System.out.println("View the balance");
+                    System.out.println("");
                     app.getRouter().navigate("/balanceView");
                     break;
                 case "4":

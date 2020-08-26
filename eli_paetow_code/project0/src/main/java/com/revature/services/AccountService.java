@@ -15,7 +15,7 @@ public class AccountService {
 
     private AccountRepository accountRepository;
 
-    public AccountService(AccountRepository accountRepo){
+    public AccountService(AccountRepository accountRepo) {
 
         accountRepository = accountRepo;
     }
@@ -29,6 +29,11 @@ public class AccountService {
         if (id == null || id.equals("")) {
             throw new InvalidRequestException("Invalid Id provided!");
         }
+//        if (accountRepository.findById(id) != accountRepository.findById(id)) {
+//            System.out.println("That is not your id");
+//
+//            app.setAppRunning(false);
+//        }
 
         UserAccount authUserId = accountRepository.findById(id)
                 .orElseThrow(AuthenticationException::new);
@@ -42,8 +47,8 @@ public class AccountService {
      *if user is new and wants to crete a new account after registering
      * */
 
-    public void createNewAccount(UserAccount newAccount){
-        if(!isAccountValid(newAccount)){
+    public void createNewAccount(UserAccount newAccount) {
+        if (!isAccountValid(newAccount)) {
             throw new InvalidRequestException("Invalid account");
         }
         accountRepository.save(newAccount);
@@ -56,11 +61,11 @@ public class AccountService {
     /*
      *check to make sure the account has no null fields
      * */
-    public boolean isAccountValid(UserAccount account){
+    public boolean isAccountValid(UserAccount account) {
         if (account == null) return false;
-        if (account.getBalance() ==null) return false;
+        if (account.getBalance() == null) return false;
         if (account.getId() == null) return false;
-        if(account.getUser_id() == null) return false;
+        if (account.getUser_id() == null) return false;
         return true;
     }
 
@@ -68,11 +73,9 @@ public class AccountService {
      *if user wants to deposit. take balance and add the amout of deposit
      * update afterwards.
      * */
-    public void depositAmount(UserAccount account, double deposit){
+    public void depositAmount(UserAccount account, double deposit) {
 
 
-        //fix to null????
-//        app.setCurrentAccount(account);
         app.setCurrentAccount(app.getCurrentAccount());
 
         account.setBalance(account.getBalance() + deposit);
@@ -87,15 +90,15 @@ public class AccountService {
      * if not simply take the balance and subtract the amount
      * then update afterwards.
      * */
-    public void withdrawMethod(UserAccount account, Double amount) throws IOException{
-        if (amount > account.getBalance()){
+    public void withdrawMethod(UserAccount account, Double amount) throws IOException {
+        if (amount > account.getBalance()) {
             System.out.println("The amount is greater than your balance");
-        }else if (amount < 0){
+        } else if (amount < 0) {
             System.out.println("You can't withdraw a negative amount");
 
-        }else {
+        } else {
             account.setBalance(account.getBalance() - amount);
-            accountRepository.updateBalance(account.getBalance() ,account.getId());
+            accountRepository.updateBalance(account.getBalance(), account.getId());
             System.out.println("Withdraw complete");
         }
     }
@@ -106,9 +109,14 @@ public class AccountService {
      * return to dashboard
      * */
 
-    public void viewBalance(UserAccount account){
-        System.out.println(account.getBalance());
+    NumberFormat money = NumberFormat.getCurrencyInstance();
 
+    public void viewBalance(UserAccount account) {
+
+        app.setCurrentAccount(app.getCurrentAccount());
+        accountRepository.updateBalance(account.getBalance(), account.getId());
+
+        System.out.println(money.format(app.getCurrentAccount().getBalance()));
     }
 
 

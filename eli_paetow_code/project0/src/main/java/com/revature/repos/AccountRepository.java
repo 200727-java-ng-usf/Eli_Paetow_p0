@@ -73,6 +73,8 @@ public class AccountRepository {
 
         Optional<com.revature.models.UserAccount> _account = Optional.empty();
 
+
+
         /*
          * try block to set up connection and find user by id
          * */
@@ -83,8 +85,8 @@ public class AccountRepository {
              * query to be run inside of dbeaver
              * */
             String sql = "SELECT balance FROM project0.user_account" +
-                    "WHERE id = ? ";
-//                    + app.getCurrentUser().getId();
+                    "WHERE id = ? "
+                 + id;
 
             /*
              *prepare statemet and execute it

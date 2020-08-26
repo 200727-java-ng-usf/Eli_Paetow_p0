@@ -24,6 +24,8 @@ public class WithdrawScreen extends Screen {
         System.out.println("");
         System.out.println("------------------------");
         System.out.println("Welcome to the Withdraw Screen");
+        System.out.println("------------------------");
+
 
         /*
          *enter in the id they want to withdraw from
@@ -43,7 +45,9 @@ public class WithdrawScreen extends Screen {
              *amount they want to withdraw
              * */
 
-            System.out.println("Enter the amount you'd like to withdraw: ");
+            System.out.print("Enter the amount you'd like to withdraw: ");
+
+            System.out.println("------------------------");
 
             try {
                 withdrawAmount = Double.parseDouble(app.getConsole().readLine());

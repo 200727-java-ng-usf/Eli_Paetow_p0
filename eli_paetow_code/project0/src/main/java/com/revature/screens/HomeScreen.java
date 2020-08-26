@@ -31,9 +31,12 @@ public class HomeScreen extends Screen {
         System.out.println("");
         System.out.println("------------------------");
         System.out.println("Welcome to Eli's Bank");
+        System.out.println("------------------------");
         System.out.println("1) Login");
         System.out.println("2) Register");
         System.out.println("3) Exit Application");
+        System.out.println("------------------------");
+
 
 
         try {

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: com.revature.utils.ConnectionFactoryTest
+Test set: com.revature.utils.services.UserServicesTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.317 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.964 sec

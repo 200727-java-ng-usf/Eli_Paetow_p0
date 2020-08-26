@@ -30,15 +30,30 @@ public class BalanceViewScreen extends Screen {
      * */
     @Override
     public void render() {
-        System.out.println("View your balance below ");
-        System.out.print("Enter your account id to be deposited: ");
+        int userInput = 0;
+        System.out.println("------------------------");
 
-        Integer id =1;
-        try{
-            accountRepository.findBalance(1);
+        System.out.println("View your balance screen ");
+        System.out.println("------------------------");
 
 
-        }catch(Exception e){
+        try {
+
+            System.out.println("To validate your account please enter your account id to be deposited:");
+
+            System.out.print("> ");
+
+            userInput = Integer.parseInt(app.getConsole().readLine());
+
+            accountService.authenticate(userInput);
+            System.out.println("------------------------");
+            System.out.println("View your balance below");
+
+
+            accountService.viewBalance(app.getCurrentAccount());
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

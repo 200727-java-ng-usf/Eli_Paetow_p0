@@ -37,7 +37,11 @@ public class DepositScreen extends Screen {
         System.out.println("");
         System.out.println("------------------------");
         System.out.println("Welcome to the Deposit Screen");
-        System.out.print("Enter your account id to be deposited: ");
+        System.out.println("------------------------");
+
+        System.out.println("To validate your account please enter your account id to be deposited:");
+
+        System.out.print("> ");
 
         try{
             userInput = Integer.parseInt(app.getConsole().readLine());
@@ -56,7 +60,9 @@ public class DepositScreen extends Screen {
         try {
 
 
-            System.out.print("Enter amount you want to deposit: ");
+            System.out.println("------------------------");
+            System.out.println("Enter amount you want to deposit: ");
+
 
             deposit = Double.parseDouble(app.getConsole().readLine());
 
