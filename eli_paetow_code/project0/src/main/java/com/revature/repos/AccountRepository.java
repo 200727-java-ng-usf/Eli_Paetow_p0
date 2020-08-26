@@ -166,6 +166,9 @@ public class AccountRepository {
     /*
      * method to use after operations
      * sets results
+     * returns a set of what i was mapping from
+     *the sql query
+     *
      * */
 
     private Set<UserAccount> mapResultSet(ResultSet rs) throws SQLException {

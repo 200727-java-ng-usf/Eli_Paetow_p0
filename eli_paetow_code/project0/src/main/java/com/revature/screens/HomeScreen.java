@@ -62,7 +62,8 @@ public class HomeScreen extends Screen {
                     System.out.println("invalid selection");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("invalid selection");
+
         }
 
 

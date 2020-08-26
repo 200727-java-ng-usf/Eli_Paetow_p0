@@ -97,7 +97,7 @@ public class UserRepository {
             _user = mapResultSet(rs).stream().findFirst();
 
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            System.out.println("Invalid credentials provided");
         }
 
         return _user;

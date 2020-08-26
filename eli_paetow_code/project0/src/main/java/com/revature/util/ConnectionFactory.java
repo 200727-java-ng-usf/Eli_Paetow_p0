@@ -11,6 +11,9 @@ public class ConnectionFactory {
 
     /*
      * create a singleton
+     * A singleton creational pattern
+     * restricts the object creation for a class to only one
+     * instance.
      * */
 
     private static ConnectionFactory connFactory = new ConnectionFactory();
