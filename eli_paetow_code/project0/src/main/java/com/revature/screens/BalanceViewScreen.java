@@ -6,12 +6,15 @@ import com.revature.services.AccountService;
 
 import javax.jws.soap.SOAPBinding;
 
+import java.io.IOException;
+
 import static com.revature.AppDriver.app;
 
 public class BalanceViewScreen extends Screen {
 
 
     private AccountService accountService;
+    private AccountRepository accountRepository;
 
     /*
      *set up name and route to be used
@@ -28,15 +31,17 @@ public class BalanceViewScreen extends Screen {
     @Override
     public void render() {
         System.out.println("View your balance below ");
-        Integer id =0;
-        try {
-            id = app.getCurrentAccount().getId();
+        System.out.print("Enter your account id to be deposited: ");
 
-            accountService.viewBalance(id);
+        Integer id =1;
+        try{
+            accountRepository.findBalance(1);
 
-        } catch (Exception e){
-            System.out.println("there has been an error viewing balance");
+
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
 
         if (app.isSessionValid()) {
             app.getRouter().navigate("/dashboard");

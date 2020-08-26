@@ -41,7 +41,7 @@ public class AccountRepository {
             String sql = "SELECT * FROM project0.app_users au " +
                     "JOIN project0.user_account ua " +
                     "ON au.role_id = ua.id " +
-                    "WHERE ua.id = ? " ;
+                    "WHERE ua.id = ? ";
 //                    + app.getCurrentUser().getId();
 
             /*
@@ -49,8 +49,49 @@ public class AccountRepository {
              * */
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
-            pstmt.setInt(1,id );
+            pstmt.setInt(1, id);
 
+            ResultSet rs = pstmt.executeQuery();
+
+            /*
+             *map the result so ut can be returned
+             * */
+            _account = mapResultSet(rs).stream().findFirst();
+
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+        return _account;
+    }
+
+    /*
+     * method for viewing the balance
+     * */
+    public Optional<UserAccount> findBalance(Integer id) {
+
+        Optional<com.revature.models.UserAccount> _account = Optional.empty();
+
+        /*
+         * try block to set up connection and find user by id
+         * */
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            /*
+             * query to be run inside of dbeaver
+             * */
+            String sql = "SELECT balance FROM project0.user_account" +
+                    "WHERE id = ? ";
+//                    + app.getCurrentUser().getId();
+
+            /*
+             *prepare statemet and execute it
+             * */
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
 
             /*

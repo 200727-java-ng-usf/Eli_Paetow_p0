@@ -48,7 +48,8 @@ public class AppState {
                 .addScreen(new DashboardScreen())
                 .addScreen(new DepositScreen(accountService))
                 .addScreen(new WithdrawScreen(accountService))
-                .addScreen(new BalanceViewScreen(accountService));
+                .addScreen(new BalanceViewScreen(accountService))
+                .addScreen(new CreateNewAccountScreen(accountService));
 
 
     }

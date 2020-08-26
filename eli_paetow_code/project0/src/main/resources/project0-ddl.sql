@@ -50,7 +50,7 @@ CREATE TABLE app_users(
 CREATE TABLE user_account(
 
 	id serial,
-	balance money DEFAULT 0.00,
+	balance int DEFAULT 0.00,
 
 	
 	CONSTRAINT user_account_pk
@@ -108,6 +108,7 @@ FROM user_account ua
 JOIN app_users au
 ON ua.id = au.id ;
 
+--DROP TABLE user_account ;
 
 
 

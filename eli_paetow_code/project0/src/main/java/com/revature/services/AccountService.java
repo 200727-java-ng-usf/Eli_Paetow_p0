@@ -7,6 +7,7 @@ import com.revature.models.UserAccount;
 import com.revature.repos.AccountRepository;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 
 import static com.revature.AppDriver.app;
 
@@ -31,6 +32,7 @@ public class AccountService {
 
         UserAccount authUserId = accountRepository.findById(id)
                 .orElseThrow(AuthenticationException::new);
+
 
         app.setCurrentAccount(authUserId);
 
